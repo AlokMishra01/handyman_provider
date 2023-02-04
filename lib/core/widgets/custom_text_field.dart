@@ -10,10 +10,12 @@ class CustomTextField extends StatelessWidget {
     this.hint,
     this.error,
     this.hasError = false,
+    this.obscureText = false,
     this.prefixIcon,
     this.suffixIcon,
     this.keyboardType = TextInputType.text,
     this.onChanged,
+    this.onSuffixTap,
     this.validator,
   }) : super(key: key);
 
@@ -22,10 +24,12 @@ class CustomTextField extends StatelessWidget {
   final String? hint;
   final String? error;
   final bool hasError;
+  final bool obscureText;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final TextInputType keyboardType;
   final Function(String)? onChanged;
+  final VoidCallback? onSuffixTap;
   final String? Function(String?)? validator;
 
   @override
@@ -49,6 +53,8 @@ class CustomTextField extends StatelessWidget {
           keyboardType: keyboardType,
           onChanged: onChanged,
           validator: validator,
+          obscureText: obscureText,
+          obscuringCharacter: '•',
           decoration: InputDecoration(
             isDense: true,
             hintText: hint,
@@ -73,10 +79,24 @@ class CustomTextField extends StatelessWidget {
                 width: 2.sp,
               ),
             ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(40.r),
+              borderSide: BorderSide(
+                color: hasError ? AppColors.primary : AppColors.secondary,
+                width: 2.sp,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(40.r),
+              borderSide: BorderSide(
+                color: hasError ? AppColors.primary : AppColors.secondary,
+                width: 2.sp,
+              ),
+            ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(40.r),
               borderSide: BorderSide(
-                color: AppColors.primary,
+                color: hasError ? AppColors.primary : AppColors.secondary,
                 width: 2.sp,
               ),
             ),
@@ -88,10 +108,13 @@ class CustomTextField extends StatelessWidget {
                   )
                 : null,
             suffixIcon: suffixIcon != null
-                ? Icon(
-                    suffixIcon,
-                    size: 28.sp,
-                    color: hasError ? AppColors.primary : AppColors.secondary,
+                ? IconButton(
+                    icon: Icon(
+                      suffixIcon,
+                      size: 28.sp,
+                      color: hasError ? AppColors.primary : AppColors.secondary,
+                    ),
+                    onPressed: onSuffixTap,
                   )
                 : null,
             contentPadding: EdgeInsets.symmetric(

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:loggy/loggy.dart';
 
 class Logger {
-  static final _loggy = Loggy('Wodapatra');
+  static final _loggy = Loggy('Handyman');
 
   Logger() {
     Loggy.initLoggy(

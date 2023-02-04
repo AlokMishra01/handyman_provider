@@ -11,12 +11,14 @@ class LoadingOverlay {
       ..dismissOnTap = false
       ..maskColor = AppColors.white.withOpacity(0.25)
       ..backgroundColor = AppColors.white
-      ..textStyle = AppStyles.text16PxMedium.copyWith(color: AppColors.primary)
-      ..textColor = AppColors.primary
+      ..textStyle = AppStyles.text18PxSemiBold.copyWith(
+        color: AppColors.secondary,
+      )
+      ..textColor = AppColors.secondary
       ..animationStyle = EasyLoadingAnimationStyle.scale
       ..loadingStyle = EasyLoadingStyle.custom
-      ..indicatorType = EasyLoadingIndicatorType.chasingDots
-      ..indicatorColor = AppColors.primary
+      ..indicatorType = EasyLoadingIndicatorType.ripple
+      ..indicatorColor = AppColors.secondary
       ..contentPadding = EdgeInsets.all(36.r)
       ..indicatorSize = 64.r
       ..radius = 12.r

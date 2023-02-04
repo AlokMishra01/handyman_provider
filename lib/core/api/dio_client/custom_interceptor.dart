@@ -18,13 +18,8 @@ class ClientInterceptor extends Interceptor {
   ) async {
     RequestOptions requestOptions = options;
 
-    // DGHFPA
-    final token = await _preference.getString(AppKeys.pinCode);
-    final dbVersion = await _preference.getInt(AppKeys.dbVersion);
-    requestOptions.headers.addAll({
-      'token': token,
-      'dbversion': dbVersion ?? 1,
-    });
+    final token = await _preference.getString(AppKeys.token);
+    requestOptions.headers.addAll({'Authorization': 'Bearer $token'});
 
     _logger.showInfo(message: requestOptions.uri.toString());
     _logger.showInfo(message: requestOptions.headers);
@@ -37,7 +32,7 @@ class ClientInterceptor extends Interceptor {
     _logger.showInfo(message: response.statusCode);
     _logger.showInfo(message: response.statusMessage);
     _logger.showInfo(message: jsonEncode(response.data));
-    return handler.next(response);
+    super.onResponse(response, handler);
   }
 
   @override
@@ -46,7 +41,6 @@ class ClientInterceptor extends Interceptor {
     _logger.showInfo(message: err.response?.statusCode, error: err.error);
     _logger.showInfo(message: err.response?.statusMessage, error: err.error);
     _logger.showInfo(message: err.response?.data, error: err.error);
-    // TODO improve logger message
-    return handler.next(err);
+    super.onError(err, handler);
   }
 }

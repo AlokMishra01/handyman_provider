@@ -1,4 +1,4 @@
 class AppKeys {
-  static const String pinCode = 'pinCode';
-  static const String dbVersion = 'dbVersion';
+  static const String token = 'token';
+  static const String profile = 'profile';
 }

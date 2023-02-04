@@ -42,6 +42,12 @@ abstract class AppStyles {
     fontStyle: FontStyle.normal,
   );
 
+  static TextStyle text16PxSemiBold = GoogleFonts.sourceSansPro(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+  );
+
   static TextStyle text18Px = GoogleFonts.sourceSansPro(
     fontSize: 18.sp,
     fontStyle: FontStyle.normal,
@@ -53,6 +59,13 @@ abstract class AppStyles {
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.w600,
     height: calculateHeight(18, 18),
+  );
+
+  static TextStyle text36PxBold = GoogleFonts.sourceSansPro(
+    fontSize: 36.sp,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+    height: calculateHeight(48, 36),
   );
 
   // calculate line height of text
