@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Preference {
@@ -10,6 +12,10 @@ class Preference {
   Future<bool> saveValue<T>(String key, T value) async {
     if (_preference == null) {
       await _initialize();
+    }
+
+    if (value is Map<String, dynamic>) {
+      return await _preference?.setString(key, jsonEncode(value)) ?? false;
     }
 
     if (value is String) {

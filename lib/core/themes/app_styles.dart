@@ -61,6 +61,27 @@ abstract class AppStyles {
     height: calculateHeight(18, 18),
   );
 
+  static TextStyle text20PxSemiBold = GoogleFonts.sourceSansPro(
+    fontSize: 20.sp,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w600,
+    height: calculateHeight(24, 20),
+  );
+
+  static TextStyle text20PxBold = GoogleFonts.sourceSansPro(
+    fontSize: 20.sp,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+    height: calculateHeight(24, 20),
+  );
+
+  static TextStyle text24PxBold = GoogleFonts.sourceSansPro(
+    fontSize: 24.sp,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+    height: calculateHeight(32, 24),
+  );
+
   static TextStyle text36PxBold = GoogleFonts.sourceSansPro(
     fontSize: 36.sp,
     fontStyle: FontStyle.normal,

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:handyman_provider/core/di/app_locator.dart';
 import 'package:handyman_provider/core/themes/app_colors.dart';
 import 'package:handyman_provider/core/themes/app_styles.dart';
+import 'package:handyman_provider/src/profile/profile.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:stacked/stacked.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
@@ -16,7 +17,7 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DashboardViewModel>.reactive(
       viewModelBuilder: () => AppLocator.locator<DashboardViewModel>(),
-      onViewModelReady: (model) {},
+      onViewModelReady: (model) => model.initDashboard(context),
       builder: (_, model, child) {
         return Scaffold(
           bottomNavigationBar: WaterDropNavBar(
@@ -30,12 +31,12 @@ class Dashboard extends StatelessWidget {
                 outlinedIcon: EvaIcons.award_outline,
               ),
               BarItem(
-                filledIcon: EvaIcons.shopping_bag,
-                outlinedIcon: EvaIcons.shopping_bag_outline,
-              ),
-              BarItem(
                 filledIcon: EvaIcons.person,
                 outlinedIcon: EvaIcons.person_outline,
+              ),
+              BarItem(
+                filledIcon: EvaIcons.settings_2,
+                outlinedIcon: EvaIcons.settings_2_outline,
               ),
             ],
             selectedIndex: model.selectedIndex,
@@ -44,32 +45,69 @@ class Dashboard extends StatelessWidget {
             waterDropColor: AppColors.secondary,
           ),
           body: SafeArea(
-            child: Column(
+            child: PageView(
+              controller: model.pageController,
+              physics: const NeverScrollableScrollPhysics(),
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                    vertical: 10.h,
-                  ),
-                  child: Text(
-                    'Services',
-                    style: AppStyles.text36PxBold.copyWith(
-                      color: AppColors.secondary,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 10.h,
+                      ),
+                      child: Text(
+                        'Services',
+                        style: AppStyles.text36PxBold.copyWith(
+                          color: AppColors.secondary,
+                        ),
+                      ),
                     ),
-                  ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: EdgeInsets.only(
+                          left: 20.w,
+                          right: 20.w,
+                          bottom: 60.h,
+                        ),
+                        child: Column(
+                          children: [],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.only(
-                      left: 20.w,
-                      right: 20.w,
-                      bottom: 60.h,
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 10.h,
+                      ),
+                      child: Text(
+                        'Services',
+                        style: AppStyles.text36PxBold.copyWith(
+                          color: AppColors.secondary,
+                        ),
+                      ),
                     ),
-                    child: Column(
-                      children: [],
-                    ),
-                  ),
-                )
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: EdgeInsets.only(
+                          left: 20.w,
+                          right: 20.w,
+                          bottom: 60.h,
+                        ),
+                        child: Column(
+                          children: [],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Profile(profileModel: model.profileModel),
+                Container(),
               ],
             ),
           ),

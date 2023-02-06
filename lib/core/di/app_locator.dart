@@ -3,6 +3,8 @@ import 'package:handyman_provider/src/dashboard/dashboard_viewmodel.dart';
 import 'package:handyman_provider/src/login/login_repository.dart';
 import 'package:handyman_provider/src/login/login_repository_impl.dart';
 import 'package:handyman_provider/src/login/login_view_model.dart';
+import 'package:handyman_provider/src/profile/profile_repository.dart';
+import 'package:handyman_provider/src/profile/profile_repository_impl.dart';
 import 'package:handyman_provider/src/signup/signup_view_model.dart';
 
 import '/core/api/dio_client/dio_client.dart';
@@ -37,6 +39,9 @@ class AppLocator {
     locator.registerFactory<LoginRepository>(
       () => LoginRepositoryImpl(locator()),
     );
+    locator.registerFactory<ProfileRepository>(
+      () => ProfileRepositoryImpl(locator()),
+    );
   }
 
   _setUpViewModels() {
@@ -44,13 +49,13 @@ class AppLocator {
       () => SplashViewModel(locator()),
     );
     locator.registerLazySingleton<LoginViewModel>(
-      () => LoginViewModel(locator(), locator()),
+      () => LoginViewModel(locator(), locator(), locator()),
     );
     locator.registerLazySingleton<SignupViewModel>(
       () => SignupViewModel(locator()),
     );
     locator.registerLazySingleton<DashboardViewModel>(
-      () => DashboardViewModel(locator()),
+      () => DashboardViewModel(locator(), locator()),
     );
   }
 }

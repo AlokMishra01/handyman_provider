@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.isExpanded = true,
     this.color = AppColors.secondary,
+    this.elevation = 0,
   }) : super(key: key);
 
   final VoidCallback onTap;
@@ -19,6 +20,7 @@ class CustomButton extends StatelessWidget {
   final bool isDisabled;
   final bool isExpanded;
   final Color color;
+  final double elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +28,9 @@ class CustomButton extends StatelessWidget {
       height: 46.h,
       color: color,
       disabledColor: AppColors.disabled,
-      elevation: 0.h,
+      elevation: elevation.sp,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(40.h),
+        borderRadius: BorderRadius.circular(10.h),
       ),
       onPressed: isDisabled ? null : onTap,
       child: Row(

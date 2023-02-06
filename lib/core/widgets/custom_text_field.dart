@@ -59,42 +59,42 @@ class CustomTextField extends StatelessWidget {
             isDense: true,
             hintText: hint,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(40.r),
+              borderRadius: BorderRadius.circular(10.r),
               borderSide: BorderSide(
                 color: hasError ? AppColors.primary : AppColors.secondary,
                 width: 2.sp,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(40.r),
+              borderRadius: BorderRadius.circular(10.r),
               borderSide: BorderSide(
                 color: hasError ? AppColors.primary : AppColors.secondary,
                 width: 2.sp,
               ),
             ),
             disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(40.r),
+              borderRadius: BorderRadius.circular(10.r),
               borderSide: BorderSide(
                 color: hasError ? AppColors.primary : AppColors.disabled,
                 width: 2.sp,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(40.r),
+              borderRadius: BorderRadius.circular(10.r),
               borderSide: BorderSide(
                 color: hasError ? AppColors.primary : AppColors.secondary,
                 width: 2.sp,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(40.r),
+              borderRadius: BorderRadius.circular(10.r),
               borderSide: BorderSide(
                 color: hasError ? AppColors.primary : AppColors.secondary,
                 width: 2.sp,
               ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(40.r),
+              borderRadius: BorderRadius.circular(10.r),
               borderSide: BorderSide(
                 color: hasError ? AppColors.primary : AppColors.secondary,
                 width: 2.sp,
