@@ -2,10 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:handyman_provider/core/models/profile_model.dart';
 import 'package:handyman_provider/core/themes/theme.dart';
 import 'package:handyman_provider/core/widgets/custom_button.dart';
 import 'package:handyman_provider/core/widgets/profile_info_widget.dart';
+import 'package:handyman_provider/src/profile/edit_profile.dart';
+import 'package:handyman_provider/src/profile/update_id.dart';
 import 'package:handyman_provider/utils/string_converter.dart';
 import 'package:icons_plus/icons_plus.dart';
 
@@ -118,6 +121,14 @@ class Profile extends StatelessWidget {
                           width: double.infinity,
                         ),
                         ProfileInfoWidget(
+                          title: 'Balance:',
+                          value: 'RM ${profileModel?.balance ?? ''}',
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                          width: double.infinity,
+                        ),
+                        ProfileInfoWidget(
                           title: 'Name:',
                           value: (profileModel?.name ?? '').toUpperCase(),
                         ),
@@ -130,13 +141,17 @@ class Profile extends StatelessWidget {
                         ProfileInfoWidget(
                           title: 'Email:',
                           value: profileModel?.email ?? '',
+                          verified:
+                              (profileModel?.emailVerificationStatus ?? false)
+                                  ? 0
+                                  : 1,
                         ),
                         SizedBox(height: 10.h),
-                        ProfileInfoWidget(
-                          title: 'City:',
-                          value: profileModel?.detail?.city?.name ?? '',
-                        ),
-                        SizedBox(height: 10.h),
+                        // ProfileInfoWidget(
+                        //   title: 'City:',
+                        //   value: profileModel?.detail?.city?.name ?? '',
+                        // ),
+                        // SizedBox(height: 10.h),
                         ProfileInfoWidget(
                           title: 'Address:',
                           value: profileModel?.detail?.address ?? '',
@@ -150,6 +165,37 @@ class Profile extends StatelessWidget {
                             profileModel?.detail?.geolocation?.longitude ?? 0.0,
                           ),
                         ),
+                        // SizedBox(height: 5.h),
+                        // const Divider(),
+                        // SizedBox(height: 5.h),
+                        // Row(
+                        //   children: [
+                        //     Flexible(
+                        //       child: CustomButton(
+                        //         onTap: () {
+                        //           Navigator.push(
+                        //             context,
+                        //             MaterialPageRoute(
+                        //               builder: (_) => EditProfile(
+                        //                 profileModel: profileModel!,
+                        //               ),
+                        //             ),
+                        //           );
+                        //         },
+                        //         elevation: 2,
+                        //         label: 'Update Profile',
+                        //       ),
+                        //     ),
+                        //     SizedBox(width: 10.h),
+                        //     Flexible(
+                        //       child: CustomButton(
+                        //         onTap: () {},
+                        //         elevation: 2,
+                        //         label: 'Update Address',
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ),
@@ -230,15 +276,63 @@ class Profile extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
                 CustomButton(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => EditProfile(
+                          profileModel: profileModel!,
+                        ),
+                      ),
+                    );
+                  },
                   elevation: 2,
-                  icon: EvaIcons.edit_outline,
-                  label: 'Edit Profile',
-                )
+                  label: 'Update Profile',
+                ),
+                SizedBox(height: 10.h),
+                CustomButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => UpdateID(
+                          profileModel: profileModel!,
+                        ),
+                      ),
+                    );
+                  },
+                  elevation: 2,
+                  label: 'Update Identification',
+                ),
+                SizedBox(height: 10.h),
+                CustomButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PlacePicker(
+                          apiKey: "AIzaSyBYGN-wd0FvWq6AchLRGCNkfO5ThUIbzrM",
+                          initialPosition: LatLng(
+                            profileModel!.detail!.geolocation!.latitude,
+                            profileModel!.detail!.geolocation!.longitude,
+                          ),
+                          onPlacePicked: (result) {
+                            print(result.name);
+                            Navigator.of(context).pop();
+                          },
+                          useCurrentLocation: true,
+                          resizeToAvoidBottomInset: false,
+                        ),
+                      ),
+                    );
+                  },
+                  elevation: 2,
+                  label: 'Update Address',
+                ),
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }

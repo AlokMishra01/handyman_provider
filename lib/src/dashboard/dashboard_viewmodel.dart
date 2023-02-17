@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -7,7 +5,8 @@ import 'package:handyman_provider/core/helpers/dialogs.dart';
 import 'package:handyman_provider/core/logger/logger.dart';
 import 'package:handyman_provider/core/models/profile_model.dart';
 import 'package:handyman_provider/core/preference/app_keys.dart';
-import 'package:handyman_provider/src/profile/profile_repository.dart';
+import 'package:handyman_provider/core/repositories/profile_repository.dart';
+import 'package:handyman_provider/src/login/login.dart';
 
 import '/core/base/base_view_model.dart';
 
@@ -59,5 +58,14 @@ class DashboardViewModel extends AppBaseViewModel {
         child: Container(),
       );
     }
+  }
+
+  onNavigate(Widget page) {
+    appNavigator.navigateTo(page);
+  }
+
+  logOut() {
+    preference.clear();
+    appNavigator.navigateTo(const Login(), clearStack: true);
   }
 }

@@ -13,6 +13,7 @@ class ProfileInfoWidget extends StatelessWidget {
     this.services = const [],
     this.isImage = false,
     this.latLng,
+    this.verified = -1,
   }) : super(key: key);
 
   final String title;
@@ -20,6 +21,7 @@ class ProfileInfoWidget extends StatelessWidget {
   final List<ServiceTypeModel> services;
   final bool isImage;
   final LatLng? latLng;
+  final int verified;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class ProfileInfoWidget extends StatelessWidget {
             fit: BoxFit.contain,
           ),
         if (services.isNotEmpty)
-          Row(
+          Wrap(
             children: [
               for (final s in services)
                 Padding(
@@ -94,6 +96,21 @@ class ProfileInfoWidget extends StatelessWidget {
                   tiltGesturesEnabled: false,
                 ),
               ),
+            ),
+          ),
+        if (verified != -1)
+          Chip(
+            label: Text(
+              verified == 0 ? 'Verified' : 'Pending',
+              style: AppStyles.text16PxSemiBold.copyWith(
+                color: AppColors.white,
+              ),
+            ),
+            backgroundColor:
+                verified == 0 ? AppColors.green : AppColors.primary,
+            visualDensity: VisualDensity.compact,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.r),
             ),
           ),
       ],

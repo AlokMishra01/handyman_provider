@@ -119,7 +119,7 @@ class CustomTextField extends StatelessWidget {
                 : null,
             contentPadding: EdgeInsets.symmetric(
               horizontal: 16.w,
-              vertical: 12.h,
+              vertical: 16.h,
             ),
             hintStyle: AppStyles.text18PxSemiBold.copyWith(
               color: AppColors.disabled,

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:handyman_provider/core/preference/app_keys.dart';
+import 'package:handyman_provider/core/repositories/login_repository.dart';
+import 'package:handyman_provider/core/repositories/profile_repository.dart';
 import 'package:handyman_provider/src/dashboard/dashboard.dart';
-import 'package:handyman_provider/src/login/login_repository.dart';
-import 'package:handyman_provider/src/profile/profile_repository.dart';
 import 'package:handyman_provider/src/signup/signup.dart';
 import 'package:string_validator/string_validator.dart';
 

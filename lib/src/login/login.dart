@@ -50,19 +50,19 @@ class Login extends StatelessWidget {
                     obscureText: model.obscureTextPassword,
                     onSuffixTap: model.onShowPasswordToggle,
                   ),
-                  SizedBox(height: 20.h),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      child: Text(
-                        'Forget Password?',
-                        style: AppStyles.text18PxSemiBold.copyWith(
-                          color: AppColors.secondary,
-                        ),
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
+                  // SizedBox(height: 20.h),
+                  // Align(
+                  //   alignment: Alignment.centerRight,
+                  //   child: InkWell(
+                  //     child: Text(
+                  //       'Forget Password?',
+                  //       style: AppStyles.text18PxSemiBold.copyWith(
+                  //         color: AppColors.secondary,
+                  //       ),
+                  //     ),
+                  //     onTap: () {},
+                  //   ),
+                  // ),
                   SizedBox(height: 20.h),
                   CustomButton(
                     onTap: model.onLoginTap,
