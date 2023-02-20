@@ -31,14 +31,14 @@ class ProfileInfoWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppStyles.text16PxSemiBold,
+          style: AppStyles.text14PxSemiBold.copyWith(
+            color: AppColors.background.withOpacity(0.8),
+          ),
         ),
         if (latLng == null && !isImage && services.isEmpty)
           Text(
             value,
-            style: AppStyles.text20PxBold.copyWith(
-              color: AppColors.secondary,
-            ),
+            style: AppStyles.text16PxSemiBold,
           ),
         if (latLng == null && isImage && services.isEmpty)
           CachedNetworkImage(
@@ -59,7 +59,7 @@ class ProfileInfoWidget extends StatelessWidget {
                         color: AppColors.white,
                       ),
                     ),
-                    backgroundColor: AppColors.secondary,
+                    backgroundColor: AppColors.green,
                     visualDensity: VisualDensity.compact,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r),

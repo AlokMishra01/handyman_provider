@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:handyman_provider/core/base/base_repository.dart';
 import 'package:handyman_provider/core/logger/logger.dart';
+import 'package:handyman_provider/core/models/all_services/service_by_id_model.dart';
+import 'package:handyman_provider/core/models/all_services/service_package_model.dart';
 import 'package:handyman_provider/core/preference/app_keys.dart';
 
 import 'profile_repository.dart';
@@ -213,10 +215,10 @@ class ProfileRepositoryImpl extends BaseRepository
   @override
   Future uploadID({required String id}) async {
     try {
-      final response = await dioClient.dioClient.put(
+      final response = await dioClient.dioClient.post(
         'id_card',
         data: FormData.fromMap({
-          'id_card': MultipartFile.fromFile(id),
+          'id_card': await MultipartFile.fromFile(id),
         }),
       );
       _logger.showInfo(message: response.toString());
@@ -305,7 +307,7 @@ class ProfileRepositoryImpl extends BaseRepository
   Future getAllServices() async {
     try {
       final response = await dioClient.dioClient.get(
-        'https://handyman.com.my/api/v1/service-types',
+        'https://handyman.com.my/api/v1/dashboard-types',
       );
       _logger.showInfo(message: response.toString());
 
@@ -329,6 +331,62 @@ class ProfileRepositoryImpl extends BaseRepository
       );
 
       return error.toString();
+    }
+  }
+
+  @override
+  Future<ServiceByIdModel?> getServiceById(int id) async {
+    try {
+      final response = await dioClient.dioClient.get(
+        'https://handyman.com.my/api/v1/service-types/$id/services',
+      );
+      _logger.showInfo(message: response.toString());
+
+      return ServiceByIdModel.fromJson(response.data);
+    } on DioError catch (error, stackTrace) {
+      logger.showInfo(
+        message: error.type.name,
+        error: error,
+        stackTrace: stackTrace,
+      );
+
+      return null;
+    } on Exception catch (error, stackTrace) {
+      logger.showInfo(
+        message: error.toString(),
+        error: error,
+        stackTrace: stackTrace,
+      );
+
+      return null;
+    }
+  }
+
+  @override
+  Future<ServicePackageModel?> getPackageDetails(int id) async {
+    try {
+      final response = await dioClient.dioClient.get(
+        'https://handyman.com.my/api/v1/services/$id/detail',
+      );
+      _logger.showInfo(message: response.toString());
+
+      return ServicePackageModel.fromJson(response.data);
+    } on DioError catch (error, stackTrace) {
+      logger.showInfo(
+        message: error.type.name,
+        error: error,
+        stackTrace: stackTrace,
+      );
+
+      return null;
+    } on Exception catch (error, stackTrace) {
+      logger.showInfo(
+        message: error.toString(),
+        error: error,
+        stackTrace: stackTrace,
+      );
+
+      return null;
     }
   }
 }

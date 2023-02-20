@@ -28,9 +28,7 @@ Future<T?> showActionableDialog<T>(
           children: [
             Text(
               title,
-              style: AppStyles.text20PxBold.copyWith(
-                color: AppColors.secondary,
-              ),
+              style: AppStyles.text20PxBold,
               textAlign: centerTitle ? TextAlign.center : TextAlign.left,
             ),
             8.verticalSpace,
@@ -90,9 +88,7 @@ Future<T?> showOnlySaveActionableDialog<T>(
           children: [
             Text(
               title,
-              style: AppStyles.text20PxBold.copyWith(
-                color: AppColors.secondary,
-              ),
+              style: AppStyles.text20PxBold,
               textAlign: centerTitle ? TextAlign.center : TextAlign.left,
             ),
             8.verticalSpace,
@@ -142,9 +138,7 @@ Future<T?> showOnlyCloseActionableDialog<T>(
           children: [
             Text(
               title,
-              style: AppStyles.text20PxBold.copyWith(
-                color: AppColors.secondary,
-              ),
+              style: AppStyles.text20PxBold,
               textAlign: TextAlign.center,
             ),
             8.verticalSpace,

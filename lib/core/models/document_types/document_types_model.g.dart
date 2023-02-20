@@ -19,7 +19,7 @@ Map<String, dynamic> _$$_DocumentTypesModelToJson(
         _$_DocumentTypesModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'data': instance.data,
+      'data': instance.data?.toJson(),
     };
 
 _$_DocumentTypeModel _$$_DocumentTypeModelFromJson(Map<String, dynamic> json) =>

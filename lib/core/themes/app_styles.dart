@@ -36,16 +36,38 @@ abstract class AppStyles {
     fontStyle: FontStyle.normal,
   );
 
+  static TextStyle text14Px = GoogleFonts.sourceSansPro(
+    fontSize: 14.sp,
+    fontStyle: FontStyle.normal,
+    height: calculateHeight(16, 14),
+  );
+
+  static TextStyle text14PxMedium = GoogleFonts.sourceSansPro(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    height: calculateHeight(16, 14),
+  );
+
+  static TextStyle text14PxSemiBold = GoogleFonts.sourceSansPro(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    height: calculateHeight(16, 14),
+  );
+
   static TextStyle text16PxMedium = GoogleFonts.sourceSansPro(
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
+    height: calculateHeight(18, 16),
   );
 
   static TextStyle text16PxSemiBold = GoogleFonts.sourceSansPro(
     fontSize: 16.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
+    height: calculateHeight(18, 16),
   );
 
   static TextStyle text18Px = GoogleFonts.sourceSansPro(

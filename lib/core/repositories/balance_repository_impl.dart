@@ -70,34 +70,42 @@ class BalanceRepositoryImpl extends BaseRepository
   }
 
   @override
-  Future topUp() async {
-    // try {
-    //   final response = await dioClient.dioClient.put(
-    //     'assigned-orders/$id/status',
-    //     data: {"status": 2},
-    //   );
-    //   _logger.showInfo(message: response.toString());
-    //
-    //   getBalance();
-    //
-    //   return true;
-    // } on DioError catch (error, stackTrace) {
-    //   logger.showInfo(
-    //     message: error.type.name,
-    //     error: error,
-    //     stackTrace: stackTrace,
-    //   );
-    //
-    //   final message = error.response?.data['message'];
-    //   return message;
-    // } on Exception catch (error, stackTrace) {
-    //   logger.showInfo(
-    //     message: error.toString(),
-    //     error: error,
-    //     stackTrace: stackTrace,
-    //   );
-    //
-    //   return error.toString();
-    // }
+  Future topUp({
+    required double amount,
+    required String payment,
+    required String voucher,
+  }) async {
+    try {
+      final response = await dioClient.dioClient.post(
+        'transactions',
+        data: FormData.fromMap({
+          "amount": amount,
+          "payment": payment,
+          "voucher": await MultipartFile.fromFile(voucher),
+        }),
+      );
+      _logger.showInfo(message: response.toString());
+
+      getBalance();
+
+      return true;
+    } on DioError catch (error, stackTrace) {
+      logger.showInfo(
+        message: error.type.name,
+        error: error,
+        stackTrace: stackTrace,
+      );
+
+      final message = error.response?.data['message'];
+      return message;
+    } on Exception catch (error, stackTrace) {
+      logger.showInfo(
+        message: error.toString(),
+        error: error,
+        stackTrace: stackTrace,
+      );
+
+      return error.toString();
+    }
   }
 }

@@ -21,7 +21,7 @@ Map<String, dynamic> _$$_AllServiceModelToJson(_$_AllServiceModel instance) =>
     <String, dynamic>{
       'status': instance.status,
       'msg': instance.msg,
-      'data': instance.data,
+      'data': instance.data.map((e) => e.toJson()).toList(),
     };
 
 _$_GeneralServiceModel _$$_GeneralServiceModelFromJson(
@@ -30,6 +30,10 @@ _$_GeneralServiceModel _$$_GeneralServiceModelFromJson(
       id: json['id'] as int,
       name: json['name'] as String,
       icon: json['icon'] as String? ?? '',
+      services: (json['services'] as List<dynamic>?)
+              ?.map((e) => ServiceIDModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_GeneralServiceModelToJson(
@@ -38,4 +42,5 @@ Map<String, dynamic> _$$_GeneralServiceModelToJson(
       'id': instance.id,
       'name': instance.name,
       'icon': instance.icon,
+      'services': instance.services.map((e) => e.toJson()).toList(),
     };

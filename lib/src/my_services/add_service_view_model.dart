@@ -26,6 +26,8 @@ class AddServiceViewModel extends AppBaseViewModel {
   ServicesModel? model;
   ServiceModel? selected;
 
+  my.ServiceModel? temp;
+
   init(my.ServiceModel? serviceModel) {
     if (serviceModel != null) {
       price.text = serviceModel.price;
@@ -96,8 +98,9 @@ class AddServiceViewModel extends AppBaseViewModel {
     notifyListeners();
   }
 
-  onNavigate(Widget page) {
-    appNavigator.navigateTo(page);
+  onNavigate(Widget page) async {
+    await appNavigator.navigateTo(page);
+    init(temp);
   }
 
   @override

@@ -5,6 +5,7 @@ part 'document_types_model.g.dart';
 
 @freezed
 class DocumentTypesModel with _$DocumentTypesModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory DocumentTypesModel({
     @Default('') String message,
     DocumentTypeModel? data,
@@ -16,6 +17,7 @@ class DocumentTypesModel with _$DocumentTypesModel {
 
 @freezed
 class DocumentTypeModel with _$DocumentTypeModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory DocumentTypeModel({
     @Default('') String citizen,
     @Default('') String certificate,

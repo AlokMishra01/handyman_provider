@@ -5,6 +5,7 @@ part 'documents_model.g.dart';
 
 @freezed
 class DocumentsModel with _$DocumentsModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory DocumentsModel({
     @Default('') String message,
     @Default([]) List<DocumentModel> data,
@@ -16,6 +17,7 @@ class DocumentsModel with _$DocumentsModel {
 
 @freezed
 class DocumentModel with _$DocumentModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory DocumentModel({
     @Default(-1) int id,
     @Default('') String title,

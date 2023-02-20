@@ -106,7 +106,8 @@ class __$$_DocumentsModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_DocumentsModel implements _DocumentsModel {
   const _$_DocumentsModel(
       {this.message = '', final List<DocumentModel> data = const []})
@@ -292,7 +293,8 @@ class __$$_DocumentModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_DocumentModel implements _DocumentModel {
   const _$_DocumentModel(
       {this.id = -1,

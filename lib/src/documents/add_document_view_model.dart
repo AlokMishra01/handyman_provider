@@ -18,7 +18,10 @@ class AddDocumentViewModel extends AppBaseViewModel {
   DocumentTypesModel? model;
   DocumentTypeModel? selected;
 
+  DocumentModel? temp;
+
   init(DocumentModel? model) {
+    temp = model;
     getData();
   }
 
@@ -83,7 +86,8 @@ class AddDocumentViewModel extends AppBaseViewModel {
     notifyListeners();
   }
 
-  onNavigate(Widget page) {
-    appNavigator.navigateTo(page);
+  onNavigate(Widget page) async {
+    await appNavigator.navigateTo(page);
+    init(temp);
   }
 }

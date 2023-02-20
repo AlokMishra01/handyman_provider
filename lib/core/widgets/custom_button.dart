@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     this.icon,
     this.isDisabled = false,
     this.isExpanded = true,
-    this.color = AppColors.secondary,
+    this.color = AppColors.green,
     this.elevation = 0,
   }) : super(key: key);
 

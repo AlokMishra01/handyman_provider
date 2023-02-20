@@ -12,9 +12,9 @@ class LoadingOverlay {
       ..maskColor = AppColors.white.withOpacity(0.25)
       ..backgroundColor = AppColors.white
       ..textStyle = AppStyles.text18PxSemiBold.copyWith(
-        color: AppColors.secondary,
+        color: AppColors.black,
       )
-      ..textColor = AppColors.secondary
+      ..textColor = AppColors.black
       ..animationStyle = EasyLoadingAnimationStyle.scale
       ..loadingStyle = EasyLoadingStyle.custom
       ..indicatorType = EasyLoadingIndicatorType.ripple

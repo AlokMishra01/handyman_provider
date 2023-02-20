@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:handyman_provider/core/di/app_locator.dart';
 import 'package:handyman_provider/core/themes/theme.dart';
 import 'package:handyman_provider/src/accepted_service/accepted_details.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:stacked/stacked.dart';
 
 import 'assigned_service_viewmodel.dart';
@@ -19,41 +18,20 @@ class AssignedService extends StatelessWidget {
       onViewModelReady: (model) => model.init(),
       builder: (_, model, child) {
         return Scaffold(
+          appBar: AppBar(
+            title: const Text('Assigned Services'),
+          ),
           body: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    SizedBox(width: 5.w),
-                    IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Icon(
-                        EvaIcons.arrow_back,
-                        size: 28.sp,
-                        color: AppColors.secondary,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 5.w,
-                        vertical: 10.h,
-                      ),
-                      child: Text(
-                        'Assigned Services',
-                        style: AppStyles.text36PxBold.copyWith(
-                          color: AppColors.secondary,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 Expanded(
                   child: ListView.separated(
                     padding: EdgeInsets.only(
                       left: 20.w,
                       right: 20.w,
                       bottom: 60.h,
+                      top: 20.h,
                     ),
                     itemCount: (model.model?.data ?? []).length,
                     separatorBuilder: (_, __) => SizedBox(height: 10.h),
@@ -80,9 +58,7 @@ class AssignedService extends StatelessWidget {
                               children: [
                                 Text(
                                   s.name,
-                                  style: AppStyles.text18PxSemiBold.copyWith(
-                                    color: AppColors.secondary,
-                                  ),
+                                  style: AppStyles.text18PxSemiBold,
                                 ),
                                 Text(
                                   s.serviceDate.toString(),
@@ -100,7 +76,7 @@ class AssignedService extends StatelessWidget {
                                         color: AppColors.white,
                                       ),
                                     ),
-                                    backgroundColor: AppColors.secondary,
+                                    backgroundColor: AppColors.green,
                                     visualDensity: VisualDensity.compact,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10.r),

@@ -106,7 +106,8 @@ class __$$_EducationLevelModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_EducationLevelModel implements _EducationLevelModel {
   const _$_EducationLevelModel({required this.id, this.name = ''});
 

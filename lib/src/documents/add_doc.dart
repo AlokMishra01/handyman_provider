@@ -25,106 +25,77 @@ class AddDoc extends StatelessWidget {
         onViewModelReady: (model) => model.init(docModel),
         builder: (_, model, child) {
           return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                model != null ? 'Update Document' : 'Add Document',
+              ),
+            ),
             body: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(width: 5.w),
-                      IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: Icon(
-                          EvaIcons.arrow_back,
-                          size: 28.sp,
-                          color: AppColors.secondary,
-                        ),
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                child: Column(
+                  children: [
+                    if (docModel == null)
+                      CustomDropdownField<DocumentTypeModel>(
+                        value: model.selected,
+                        // items: (model.model?.data ?? []).map((e) {
+                        //   return DropdownMenuItem(
+                        //     value: e,
+                        //     child: Text(
+                        //       e.title,
+                        //       maxLines: 1,
+                        //       style: AppStyles.text16PxSemiBold.copyWith(
+                        //         color: AppColors.black,
+                        //       ),
+                        //     ),
+                        //   );
+                        // }).toList(),
+                        items: [],
+                        onChanged: model.onSelect,
+                        hint: 'Select service type',
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 5.w,
-                          vertical: 10.h,
+                    if (docModel == null) SizedBox(height: 10.h),
+                    AspectRatio(
+                      aspectRatio: 2,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.background.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(10.r),
                         ),
-                        child: Text(
-                          model != null ? 'Update Document' : 'Add Document',
-                          style: AppStyles.text36PxBold.copyWith(
-                            color: AppColors.secondary,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 48.h),
-                      child: Column(
-                        children: [
-                          if (docModel == null)
-                            CustomDropdownField<DocumentTypeModel>(
-                              value: model.selected,
-                              // items: (model.model?.data ?? []).map((e) {
-                              //   return DropdownMenuItem(
-                              //     value: e,
-                              //     child: Text(
-                              //       e.title,
-                              //       maxLines: 1,
-                              //       style: AppStyles.text16PxSemiBold.copyWith(
-                              //         color: AppColors.black,
-                              //       ),
-                              //     ),
-                              //   );
-                              // }).toList(),
-                              items: [],
-                              onChanged: model.onSelect,
-                              hint: 'Select service type',
-                            ),
-                          if (docModel == null) SizedBox(height: 10.h),
-                          AspectRatio(
-                            aspectRatio: 2,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: AppColors.background.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () async {
-                                        final result = await FilePicker.platform
-                                            .pickFiles();
-                                      },
-                                      icon: Icon(
-                                        EvaIcons.file_add_outline,
-                                        size: 36.sp,
-                                        color: AppColors.secondary,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Upload Document',
-                                      style: AppStyles.text16PxSemiBold,
-                                    )
-                                  ],
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                onPressed: () async {
+                                  final result =
+                                      await FilePicker.platform.pickFiles();
+                                },
+                                icon: Icon(
+                                  EvaIcons.file_add_outline,
+                                  size: 36.sp,
+                                  color: AppColors.secondary,
                                 ),
                               ),
-                            ),
+                              Text(
+                                'Upload Document',
+                                style: AppStyles.text16PxSemiBold,
+                              )
+                            ],
                           ),
-                          SizedBox(height: 20.h),
-                          CustomButton(
-                            onTap: () {},
-                            label: docModel != null
-                                ? 'Update Document'
-                                : 'Add Document',
-                            icon: EvaIcons.save_outline,
-                            isDisabled: false,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20.h),
+                    CustomButton(
+                      onTap: () {},
+                      label:
+                          docModel != null ? 'Update Document' : 'Add Document',
+                      icon: EvaIcons.save_outline,
+                      isDisabled: false,
+                    ),
+                  ],
+                ),
               ),
             ),
           );

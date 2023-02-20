@@ -5,6 +5,7 @@ part 'city_model.g.dart';
 
 @freezed
 class CityModel with _$CityModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory CityModel({
     required int id,
     @Default('') String name,

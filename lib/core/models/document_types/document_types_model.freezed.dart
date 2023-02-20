@@ -123,7 +123,8 @@ class __$$_DocumentTypesModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_DocumentTypesModel implements _DocumentTypesModel {
   const _$_DocumentTypesModel({this.message = '', this.data});
 
@@ -290,7 +291,8 @@ class __$$_DocumentTypeModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_DocumentTypeModel implements _DocumentTypeModel {
   const _$_DocumentTypeModel(
       {this.citizen = '', this.certificate = '', this.license = ''});

@@ -41,8 +41,9 @@ class AcceptedServiceViewModel extends AppBaseViewModel {
     loadingOverlay.dismiss();
   }
 
-  onNavigate(Widget page) {
-    appNavigator.navigateTo(page);
+  onNavigate(Widget page) async {
+    await appNavigator.navigateTo(page);
+    init();
   }
 
   logOut() {

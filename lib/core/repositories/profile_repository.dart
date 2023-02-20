@@ -1,3 +1,6 @@
+import 'package:handyman_provider/core/models/all_services/service_by_id_model.dart';
+import 'package:handyman_provider/core/models/all_services/service_package_model.dart';
+
 abstract class ProfileRepository {
   Future<dynamic> getProfile();
 
@@ -18,6 +21,10 @@ abstract class ProfileRepository {
   Future<dynamic> uploadID({required String id});
 
   Future<dynamic> getAllServices();
+
+  Future<ServiceByIdModel?> getServiceById(int id);
+
+  Future<ServicePackageModel?> getPackageDetails(int id);
 
   Future<dynamic> getMyService();
 

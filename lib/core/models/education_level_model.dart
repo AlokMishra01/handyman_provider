@@ -5,6 +5,7 @@ part 'education_level_model.g.dart';
 
 @freezed
 class EducationLevelModel with _$EducationLevelModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory EducationLevelModel({
     required int id,
     @Default('') String name,

@@ -18,21 +18,21 @@ _$_DocumentsModel _$$_DocumentsModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_DocumentsModelToJson(_$_DocumentsModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'data': instance.data,
+      'data': instance.data.map((e) => e.toJson()).toList(),
     };
 
 _$_DocumentModel _$$_DocumentModelFromJson(Map<String, dynamic> json) =>
     _$_DocumentModel(
       id: json['id'] as int? ?? -1,
       title: json['title'] as String? ?? '',
-      documentType: json['documentType'] as String? ?? '',
-      documentPath: json['documentPath'] as String? ?? '',
+      documentType: json['document_type'] as String? ?? '',
+      documentPath: json['document_path'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_DocumentModelToJson(_$_DocumentModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'documentType': instance.documentType,
-      'documentPath': instance.documentPath,
+      'document_type': instance.documentType,
+      'document_path': instance.documentPath,
     };

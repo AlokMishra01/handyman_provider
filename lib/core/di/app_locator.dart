@@ -12,11 +12,14 @@ import 'package:handyman_provider/core/repositories/profile_repository_impl.dart
 import 'package:handyman_provider/src/accepted_service/accepted_details_viewmodel.dart';
 import 'package:handyman_provider/src/accepted_service/accepted_service_viewmodel.dart';
 import 'package:handyman_provider/src/assigned_service/assigned_service_viewmodel.dart';
+import 'package:handyman_provider/src/dashboard/categories_viewmodel.dart';
 import 'package:handyman_provider/src/dashboard/dashboard_viewmodel.dart';
+import 'package:handyman_provider/src/dashboard/service_details_viewmodel.dart';
 import 'package:handyman_provider/src/documents/add_document_view_model.dart';
 import 'package:handyman_provider/src/documents/documents_viewmodel.dart';
 import 'package:handyman_provider/src/login/login_view_model.dart';
 import 'package:handyman_provider/src/my_balance/my_balance_viewmodel.dart';
+import 'package:handyman_provider/src/my_balance/top_up_viewmodel.dart';
 import 'package:handyman_provider/src/my_income/my_income_viewmodel.dart';
 import 'package:handyman_provider/src/my_services/add_service_view_model.dart';
 import 'package:handyman_provider/src/my_services/my_service_viewmodel.dart';
@@ -81,7 +84,7 @@ class AppLocator {
       () => SignupViewModel(locator(), locator()),
     );
     locator.registerLazySingleton<DashboardViewModel>(
-      () => DashboardViewModel(locator(), locator()),
+      () => DashboardViewModel(locator(), locator(), locator()),
     );
     locator.registerLazySingleton<AcceptedServiceViewModel>(
       () => AcceptedServiceViewModel(locator(), locator()),
@@ -115,6 +118,15 @@ class AppLocator {
     );
     locator.registerLazySingleton<EditProfileViewModel>(
       () => EditProfileViewModel(locator(), locator()),
+    );
+    locator.registerLazySingleton<CategoriesViewModel>(
+      () => CategoriesViewModel(locator(), locator()),
+    );
+    locator.registerLazySingleton<TopUpViewModel>(
+      () => TopUpViewModel(locator(), locator()),
+    );
+    locator.registerLazySingleton<ServiceDetailsViewModel>(
+      () => ServiceDetailsViewModel(locator(), locator()),
     );
   }
 }

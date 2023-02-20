@@ -32,7 +32,11 @@ class EditProfileViewModel extends AppBaseViewModel {
   AllServiceModel? model;
   List<GeneralServiceModel> selected = [];
 
+  late ProfileModel temp;
+
   init(ProfileModel profile) {
+    temp = profile;
+
     name.text = profile.name;
     email.text = profile.email;
     address.text = profile.detail?.address ?? '';
@@ -85,7 +89,7 @@ class EditProfileViewModel extends AppBaseViewModel {
       experience: experience.text.trim(),
       latitude: (profile.detail?.geolocation?.latitude ?? '80').toString(),
       longitude: (profile.detail?.geolocation?.longitude ?? '80').toString(),
-      services: offered,
+      services: [],
       idNumber: id.text.trim(),
       serviceTypeId: offered,
     );
@@ -135,8 +139,9 @@ class EditProfileViewModel extends AppBaseViewModel {
   //   notifyListeners();
   // }
 
-  onNavigate(Widget page) {
-    appNavigator.navigateTo(page);
+  onNavigate(Widget page) async {
+    await appNavigator.navigateTo(page);
+    init(temp);
   }
 
   @override

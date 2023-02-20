@@ -29,93 +29,63 @@ class AddService extends StatelessWidget {
         onViewModelReady: (model) => model.init(serviceModel),
         builder: (_, model, child) {
           return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                serviceModel != null ? 'Update Service' : 'Add Service',
+              ),
+            ),
             body: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(width: 5.w),
-                      IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: Icon(
-                          EvaIcons.arrow_back,
-                          size: 28.sp,
-                          color: AppColors.secondary,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 5.w,
-                          vertical: 10.h,
-                        ),
-                        child: Text(
-                          serviceModel != null
-                              ? 'Update Service'
-                              : 'Add Service',
-                          style: AppStyles.text36PxBold.copyWith(
-                            color: AppColors.secondary,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 48.h),
-                      child: Column(
-                        children: [
-                          if (serviceModel == null)
-                            CustomDropdownField<ServiceModel>(
-                              value: model.selected,
-                              items: (model.model?.data ?? []).map((e) {
-                                return DropdownMenuItem(
-                                  value: e,
-                                  child: Text(
-                                    e.title,
-                                    maxLines: 1,
-                                    style: AppStyles.text16PxSemiBold.copyWith(
-                                      color: AppColors.black,
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: model.onSelect,
-                              hint: 'Select service type',
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                child: Column(
+                  children: [
+                    if (serviceModel == null)
+                      CustomDropdownField<ServiceModel>(
+                        value: model.selected,
+                        items: (model.model?.data ?? []).map((e) {
+                          return DropdownMenuItem(
+                            value: e,
+                            child: Text(
+                              e.title,
+                              maxLines: 1,
+                              style: AppStyles.text16PxSemiBold.copyWith(
+                                color: AppColors.black,
+                              ),
                             ),
-                          if (serviceModel == null) SizedBox(height: 10.h),
-                          CustomTextField(
-                            hint: 'Price',
-                            controller: model.price,
-                            keyboardType: TextInputType.number,
-                          ),
-                          SizedBox(height: 10.h),
-                          CustomTextField(
-                            hint: 'Duration',
-                            controller: model.duration,
-                          ),
-                          SizedBox(height: 10.h),
-                          CustomTextField(
-                            hint: 'Description',
-                            controller: model.description,
-                          ),
-                          SizedBox(height: 20.h),
-                          CustomButton(
-                            onTap: serviceModel != null
-                                ? () => model.onEdit(serviceModel!.id)
-                                : model.onSave,
-                            label: serviceModel != null
-                                ? 'Update Service'
-                                : 'Add Service',
-                            icon: EvaIcons.save_outline,
-                            isDisabled: false,
-                          ),
-                        ],
+                          );
+                        }).toList(),
+                        onChanged: model.onSelect,
+                        hint: 'Select service type',
                       ),
+                    if (serviceModel == null) SizedBox(height: 10.h),
+                    CustomTextField(
+                      hint: 'Price',
+                      controller: model.price,
+                      keyboardType: TextInputType.number,
                     ),
-                  ),
-                ],
+                    SizedBox(height: 10.h),
+                    CustomTextField(
+                      hint: 'Duration',
+                      controller: model.duration,
+                    ),
+                    SizedBox(height: 10.h),
+                    CustomTextField(
+                      hint: 'Description',
+                      controller: model.description,
+                    ),
+                    SizedBox(height: 20.h),
+                    CustomButton(
+                      onTap: serviceModel != null
+                          ? () => model.onEdit(serviceModel!.id)
+                          : model.onSave,
+                      label: serviceModel != null
+                          ? 'Update Service'
+                          : 'Add Service',
+                      icon: EvaIcons.save_outline,
+                      isDisabled: false,
+                    ),
+                  ],
+                ),
               ),
             ),
           );

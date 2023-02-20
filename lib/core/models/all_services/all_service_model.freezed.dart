@@ -117,7 +117,8 @@ class __$$_AllServiceModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_AllServiceModel implements _AllServiceModel {
   const _$_AllServiceModel(
       {required this.status,
@@ -205,6 +206,7 @@ mixin _$GeneralServiceModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get icon => throw _privateConstructorUsedError;
+  List<ServiceIDModel> get services => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -218,7 +220,7 @@ abstract class $GeneralServiceModelCopyWith<$Res> {
           GeneralServiceModel value, $Res Function(GeneralServiceModel) then) =
       _$GeneralServiceModelCopyWithImpl<$Res, GeneralServiceModel>;
   @useResult
-  $Res call({int id, String name, String icon});
+  $Res call({int id, String name, String icon, List<ServiceIDModel> services});
 }
 
 /// @nodoc
@@ -237,6 +239,7 @@ class _$GeneralServiceModelCopyWithImpl<$Res, $Val extends GeneralServiceModel>
     Object? id = null,
     Object? name = null,
     Object? icon = null,
+    Object? services = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -251,6 +254,10 @@ class _$GeneralServiceModelCopyWithImpl<$Res, $Val extends GeneralServiceModel>
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as String,
+      services: null == services
+          ? _value.services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<ServiceIDModel>,
     ) as $Val);
   }
 }
@@ -263,7 +270,7 @@ abstract class _$$_GeneralServiceModelCopyWith<$Res>
       __$$_GeneralServiceModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String icon});
+  $Res call({int id, String name, String icon, List<ServiceIDModel> services});
 }
 
 /// @nodoc
@@ -280,6 +287,7 @@ class __$$_GeneralServiceModelCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? icon = null,
+    Object? services = null,
   }) {
     return _then(_$_GeneralServiceModel(
       id: null == id
@@ -294,15 +302,24 @@ class __$$_GeneralServiceModelCopyWithImpl<$Res>
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as String,
+      services: null == services
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<ServiceIDModel>,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_GeneralServiceModel implements _GeneralServiceModel {
   const _$_GeneralServiceModel(
-      {required this.id, required this.name, this.icon = ''});
+      {required this.id,
+      required this.name,
+      this.icon = '',
+      final List<ServiceIDModel> services = const []})
+      : _services = services;
 
   factory _$_GeneralServiceModel.fromJson(Map<String, dynamic> json) =>
       _$$_GeneralServiceModelFromJson(json);
@@ -314,10 +331,18 @@ class _$_GeneralServiceModel implements _GeneralServiceModel {
   @override
   @JsonKey()
   final String icon;
+  final List<ServiceIDModel> _services;
+  @override
+  @JsonKey()
+  List<ServiceIDModel> get services {
+    if (_services is EqualUnmodifiableListView) return _services;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_services);
+  }
 
   @override
   String toString() {
-    return 'GeneralServiceModel(id: $id, name: $name, icon: $icon)';
+    return 'GeneralServiceModel(id: $id, name: $name, icon: $icon, services: $services)';
   }
 
   @override
@@ -327,12 +352,14 @@ class _$_GeneralServiceModel implements _GeneralServiceModel {
             other is _$_GeneralServiceModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.icon, icon) || other.icon == icon));
+            (identical(other.icon, icon) || other.icon == icon) &&
+            const DeepCollectionEquality().equals(other._services, _services));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, icon);
+  int get hashCode => Object.hash(runtimeType, id, name, icon,
+      const DeepCollectionEquality().hash(_services));
 
   @JsonKey(ignore: true)
   @override
@@ -353,7 +380,8 @@ abstract class _GeneralServiceModel implements GeneralServiceModel {
   const factory _GeneralServiceModel(
       {required final int id,
       required final String name,
-      final String icon}) = _$_GeneralServiceModel;
+      final String icon,
+      final List<ServiceIDModel> services}) = _$_GeneralServiceModel;
 
   factory _GeneralServiceModel.fromJson(Map<String, dynamic> json) =
       _$_GeneralServiceModel.fromJson;
@@ -364,6 +392,8 @@ abstract class _GeneralServiceModel implements GeneralServiceModel {
   String get name;
   @override
   String get icon;
+  @override
+  List<ServiceIDModel> get services;
   @override
   @JsonKey(ignore: true)
   _$$_GeneralServiceModelCopyWith<_$_GeneralServiceModel> get copyWith =>

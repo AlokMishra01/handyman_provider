@@ -104,7 +104,8 @@ class __$$_CityModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_CityModel implements _CityModel {
   const _$_CityModel({required this.id, this.name = ''});
 

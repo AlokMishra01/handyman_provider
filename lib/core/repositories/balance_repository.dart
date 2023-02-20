@@ -3,5 +3,9 @@ abstract class BalanceRepository {
 
   Future<dynamic> getIncome();
 
-  Future<dynamic> topUp();
+  Future<dynamic> topUp({
+    required double amount,
+    required String payment,
+    required String voucher,
+  });
 }

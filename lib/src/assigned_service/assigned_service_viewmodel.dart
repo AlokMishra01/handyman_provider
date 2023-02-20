@@ -40,7 +40,9 @@ class AssignedServiceViewModel extends AppBaseViewModel {
     loadingOverlay.dismiss();
   }
 
-  onNavigate(Widget page) {
-    appNavigator.navigateTo(page);
+  onNavigate(Widget page) async {
+    await await appNavigator.navigateTo(page);
+    init();
+    init();
   }
 }

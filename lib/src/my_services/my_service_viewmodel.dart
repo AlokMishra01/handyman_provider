@@ -40,7 +40,15 @@ class MyServiceViewModel extends AppBaseViewModel {
     loadingOverlay.dismiss();
   }
 
-  onNavigate(Widget page) {
-    appNavigator.navigateTo(page);
+  remove(int id) async {
+    loadingOverlay.show();
+    await _repository.removeMyService(id: id);
+    loadingOverlay.dismiss();
+    getData();
+  }
+
+  onNavigate(Widget page) async {
+    await appNavigator.navigateTo(page);
+    init();
   }
 }
